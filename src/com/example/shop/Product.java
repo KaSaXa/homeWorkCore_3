@@ -1,6 +1,6 @@
 package com.example.shop;
 
-public abstract class Product {
+public abstract class Product implements Searchable{
     private final String name;
 
     public Product(String name) {
@@ -14,6 +14,15 @@ public abstract class Product {
     public abstract double getPrice();
 
     public abstract boolean isSpecial();
+
+    public String getSearchTerm() {
+        return name;
+    }
+
+    @Override
+    public String getContentType() {
+        return "PRODUCT";
+    }
 
     @Override
     public String toString() {
