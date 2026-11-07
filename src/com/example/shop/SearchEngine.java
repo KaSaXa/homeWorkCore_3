@@ -1,41 +1,29 @@
 package com.example.shop;
 
-public class SearchEngine {
-    private final Searchable[] items;
-    private int size = 0;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-    public SearchEngine(int capacity) {
-        this.items = new Searchable[capacity];
-    }
+public class SearchEngine {
+    private final List<Searchable> items = new LinkedList<>();
 
     public void add(Searchable item) {
         if (item == null) {
             return;
         }
-        if (size >= items.length) {
-            return;
-        }
-        items[size] = item;
-        size++;
+        items.add(item);
     }
 
-    public Searchable[] search(String query) {
-        Searchable[] result = new Searchable[5];
-        int found = 0;
-
+    public List<Searchable> search(String query) {
+        List<Searchable> result = new ArrayList<>();
         for (Searchable item : items) {
             if (item == null) {
                 continue;
             }
             if (item.getSearchTerm().contains(query)) {
-                result[found] = item;
-                found++;
-                if (found == 5) {
-                    break;
-                }
+                result.add(item);
             }
         }
-
         return result;
     }
 
