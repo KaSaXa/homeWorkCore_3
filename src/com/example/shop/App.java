@@ -1,6 +1,7 @@
 package com.example.shop;
 
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -70,8 +71,8 @@ public class App {
 
         System.out.println();
         System.out.println("=== Поиск: \"Кофе\" ===");
-        List<Searchable> found = engine.search("Кофе");
-        for (Searchable s : found) {
+        Map<String, Searchable> found = engine.search("Кофе");
+        for (Searchable s : found.values()) {
             System.out.println(s.getStringRepresentation());
         }
 
