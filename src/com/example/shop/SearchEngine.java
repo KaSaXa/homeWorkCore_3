@@ -1,12 +1,11 @@
 package com.example.shop;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SearchEngine {
-    private final List<Searchable> items = new LinkedList<>();
+    private final Set<Searchable> items = new HashSet<>();
 
     public void add(Searchable item) {
         if (item == null) {
@@ -15,14 +14,14 @@ public class SearchEngine {
         items.add(item);
     }
 
-    public Map<String, Searchable> search(String query) {
-        Map<String, Searchable> result = new TreeMap<>();
+    public Set<Searchable> search(String query) {
+        Set<Searchable> result = new TreeSet<>(new SearchableComparator());
         for (Searchable item : items) {
             if (item == null) {
                 continue;
             }
             if (item.getSearchTerm().contains(query)) {
-                result.put(item.getName(), item);
+                result.add(item);
             }
         }
         return result;
